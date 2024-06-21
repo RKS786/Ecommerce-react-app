@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as actionTypes from './actionTypes';
 
-const API_URL = 'https://my-json-server.typicode.com/your-username/your-repo';
+const API_URL = 'https://my-json-server.typicode.com/RKS786/E-commerce-react-app';
 
 // Fetch Products Action
 export const fetchProducts = () => async dispatch => {
