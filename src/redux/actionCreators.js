@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as actionTypes from './actionTypes';
 
-const API_URL = 'https://my-json-server.typicode.com/RKS786/E-commerce-react-app';
+const API_URL = 'https://my-json-server.typicode.com/RKS786/Ecommerce-react-app';
 
 // Fetch Products Action
 export const fetchProducts = () => async dispatch => {
@@ -30,7 +30,7 @@ export const addProduct = (product) => async dispatch => {
 export const deleteProduct = (id) => async dispatch => {
     dispatch({ type: actionTypes.DELETE_PRODUCT_PENDING });
     try{
-        const response = await axios.delete(`${API_URL}/proudcts/${id}`);
+        const response = await axios.delete(`${API_URL}/products/${id}`);
         dispatch({ type: actionTypes.DELETE_PRODUCT_SUCCESS, payload: id });
     }catch(error){
         dispatch({ type: actionTypes.DELETE_PRODUCT_FAILURE, payload: error });
@@ -41,7 +41,7 @@ export const deleteProduct = (id) => async dispatch => {
 export const updateProduct = (id, updatedProduct) => async dispatch => {
     dispatch({ type: actionTypes.UPDATE_PRODUCT_PENDING });
     try{
-        const response = await axios.put(`${API_URL}/proudcts/${id}`, updatedProduct);
+        const response = await axios.put(`${API_URL}/products/${id}`, updatedProduct);
         dispatch({ type: actionTypes.UPDATE_PRODUCT_SUCCESS, payload: response.data });
     }catch(error){
         dispatch({ type: actionTypes.UPDATE_PRODUCT_FAILURE, payload: error });
@@ -49,6 +49,6 @@ export const updateProduct = (id, updatedProduct) => async dispatch => {
 }
 
 // Add to Cart Action
-export const addToCart = (product) => {
-    dispatch({ type: actionTypes.addToCart, payload: product })
+export const addToCart = (product) => async dispatch => {
+    dispatch({ type: actionTypes.ADD_TO_CART, payload: product })
 }

@@ -1,10 +1,10 @@
-// /src/components/ProductItem.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateProduct, deleteProduct, addToCart } from '../actions';
-import './styles/ProductItem.css';
+import { updateProduct, deleteProduct, addToCart } from '../../redux/actionCreators';
+import './ProductItem.css';
 
 const ProductItem = ({ product }) => {
+    console.log("product",product)
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
     const [editedProduct, setEditedProduct] = useState(product);
@@ -16,7 +16,7 @@ const ProductItem = ({ product }) => {
     };
 
     const handleUpdateProduct = () => {
-        dispatch(updateProduct(editedProduct));
+        dispatch(updateProduct(product.id, editedProduct));
         setIsEditing(false);
     };
 
@@ -28,10 +28,22 @@ const ProductItem = ({ product }) => {
         dispatch(addToCart(product));
     };
 
+    const renderStars = (rating) => {
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            stars.push(
+                <span key={i} className={`star ${i <= rating ? 'filled' : ''}`}>
+                    &#9733;
+                </span>
+            );
+        }
+        return stars;
+    };
+
     return (
         <div className="product-item">
             <img src={product.image} alt={product.name} className="product-image" />
-            <div className="product-details">
+            <div className="product-info">
                 {isEditing ? (
                     <div>
                         <input
@@ -47,32 +59,46 @@ const ProductItem = ({ product }) => {
                             onChange={handleInputChange}
                         />
                         <input
-                            type="text"
+                            type="number"
                             name="rating"
                             value={editedProduct.rating}
                             onChange={handleInputChange}
+                            min="0"
+                            max="5"
                         />
-                        <textarea
-                            name="description"
-                            value={editedProduct.description}
-                            onChange={handleInputChange}
-                        />
-                        <button onClick={handleUpdateProduct}>Save</button>
-                        <button onClick={handleEditToggle}>Cancel</button>
                     </div>
                 ) : (
                     <div>
                         <h3>{product.name}</h3>
                         <p>${product.price}</p>
-                        <p>Rating: {product.rating}</p>
-                        <p>{product.description}</p>
-                        <div className="product-buttons">
+                        <div className="rating">{renderStars(product.rating)}</div>
+                    </div>
+                )}
+            </div>
+            <div className="product-description">
+                {isEditing ? (
+                    <textarea
+                        name="description"
+                        value={editedProduct.description}
+                        onChange={handleInputChange}
+                    />
+                ) : (
+                    <p>{product.description}</p>
+                )}
+                <div className="product-buttons">
+                    {isEditing ? (
+                        <>
+                            <button onClick={handleUpdateProduct}>Save</button>
+                            <button onClick={handleEditToggle}>Cancel</button>
+                        </>
+                    ) : (
+                        <>
                             <button onClick={handleEditToggle}>Edit</button>
                             <button onClick={handleDeleteProduct}>Delete</button>
                             <button onClick={handleAddToCart}>Add to Cart</button>
-                        </div>
-                    </div>
-                )}
+                        </>
+                    )}
+                </div>
             </div>
         </div>
     );

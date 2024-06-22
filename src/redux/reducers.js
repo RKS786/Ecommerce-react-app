@@ -41,9 +41,11 @@ export const productReducer = (state= initialState, action) => {
                 error: null
             };
         case actionTypes.UPDATE_PRODUCT_SUCCESS:
-            return{
+            return {
                 ...state,
-                products: action.payload,
+                products: state.products.map(product => 
+                    product.id === action.payload.id ? action.payload : product
+                ),
                 loading: false,
                 error: null
             };
