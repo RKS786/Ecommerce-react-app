@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../redux/actionCreators';
+import { useNavigate } from 'react-router-dom';
 import './AddProduct.css';
 
 const AddProduct = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [product, setProduct] = useState({
         name: '',
         description: '',
@@ -18,10 +20,11 @@ const AddProduct = () => {
         setProduct({ ...product, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Dispatch action to add product
-        dispatch(addProduct(product));
+        const result = await dispatch(addProduct(product));
+        console.log("result",result)
         // Clear form after submission
         setProduct({
             name: '',
@@ -30,6 +33,10 @@ const AddProduct = () => {
             rating: '',
             image: ''
         });
+        // Navigate to the products page
+        if (result) {
+            navigate('/');
+        }
     };
 
     return (

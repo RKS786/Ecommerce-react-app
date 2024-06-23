@@ -21,8 +21,10 @@ export const addProduct = (product) => async dispatch => {
     dispatch({ type: actionTypes.ADD_PRODUCT_PENDING });
     try{
         const response = await axios.post(`${API_URL}/products`);
-        dispatch({ type: actionTypes.ADD_PRODUCT_SUCCESS, payload: response.data});
+        const newProduct = { ...product, id: response.data.id };
+        dispatch({ type: actionTypes.ADD_PRODUCT_SUCCESS, payload: newProduct });
         toast.success('Product added successfully!');
+        return newProduct;
     }catch(error){
         dispatch({ type: actionTypes.ADD_PRODUCT_FAILURE, payload: error });
         toast.error('Failed to add product.');
