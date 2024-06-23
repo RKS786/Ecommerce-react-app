@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from './actionTypes';
+import { toast } from 'react-toastify';
 
 const API_URL = 'https://my-json-server.typicode.com/RKS786/Ecommerce-react-app';
 
@@ -11,6 +12,7 @@ export const fetchProducts = () => async dispatch => {
         dispatch({ type: actionTypes.FETCH_PRODUCTS_SUCCESS, payload: response.data });
     }catch(error){
         dispatch({ type: actionTypes.FETCH_PRODUCTS_FAILURE, payload: error });
+        toast.error('Failed to fetch products.');
     }
 }
 
@@ -20,8 +22,10 @@ export const addProduct = (product) => async dispatch => {
     try{
         const response = await axios.post(`${API_URL}/products`);
         dispatch({ type: actionTypes.ADD_PRODUCT_SUCCESS, payload: response.data});
+        toast.success('Product added successfully!');
     }catch(error){
         dispatch({ type: actionTypes.ADD_PRODUCT_FAILURE, payload: error });
+        toast.error('Failed to add product.');
     }
 }
 
@@ -32,8 +36,10 @@ export const deleteProduct = (id) => async dispatch => {
     try{
         const response = await axios.delete(`${API_URL}/products/${id}`);
         dispatch({ type: actionTypes.DELETE_PRODUCT_SUCCESS, payload: id });
+        toast.success('Product deleted successfully!');
     }catch(error){
         dispatch({ type: actionTypes.DELETE_PRODUCT_FAILURE, payload: error });
+        toast.error('Failed to delete product.');
     }
 }
 
@@ -43,12 +49,15 @@ export const updateProduct = (id, updatedProduct) => async dispatch => {
     try{
         const response = await axios.put(`${API_URL}/products/${id}`, updatedProduct);
         dispatch({ type: actionTypes.UPDATE_PRODUCT_SUCCESS, payload: response.data });
+        toast.success('Product updated successfully!');
     }catch(error){
         dispatch({ type: actionTypes.UPDATE_PRODUCT_FAILURE, payload: error });
+        toast.error('Failed to update product.');
     }
 }
 
 // Add to Cart Action
 export const addToCart = (product) => async dispatch => {
-    dispatch({ type: actionTypes.ADD_TO_CART, payload: product })
+    dispatch({ type: actionTypes.ADD_TO_CART, payload: product });
+    toast.success('Product added to cart!');
 }
