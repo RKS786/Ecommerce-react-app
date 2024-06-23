@@ -4,6 +4,17 @@ import './CartPage.css';
 
 const CartPage = () => {
     const cartItems = useSelector(state => state.cart);
+    const renderStars = (rating) => {
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            stars.push(
+                <span key={i} className={`star ${i <= rating ? 'filled' : ''}`}>
+                    &#9733;
+                </span>
+            );
+        }
+        return stars;
+    };
 
     return (
         <div className="cart-page">
@@ -12,17 +23,23 @@ const CartPage = () => {
                 <p>Your cart is empty</p>
             ) : (
                 <ul className="cart-items">
-                    {cartItems.map(item => (
-                        <li key={item.id} className="cart-item">
-                            <img src={item.image} alt={item.name} className="cart-item-image" />
-                            <div className="cart-item-details">
-                                <h3>{item.name}</h3>
-                                
-                                <p>Price: ${item.price}</p>
-                                <p>Rating: {item.rating}</p>
-                            </div>
-                            <div><p>{item.description}</p></div>
-                        </li>
+                    {cartItems.map(product => (
+                        <div className="product-item">
+                        <img src={product.image} alt={product.name} className="product-image" />
+                        <div className="product-info">
+                            
+                                <div>
+                                    <h3>{product.name}</h3>
+                                    <p>${product.price}</p>
+                                    <div className="rating">{renderStars(product.rating)}</div>
+                                </div>
+                        </div>
+                        <div className="product-description">
+                            
+                                <p>{product.description}</p>
+                            
+                        </div>
+                    </div>
                     ))}
                 </ul>
             )}

@@ -1,0 +1,39 @@
+
+
+.product-list {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sort-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.sort-bar button {
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.sort-bar button:hover {
+    background-color: #0056b3;
+}
+
+.sort-bar .cancel-button {
+    background-color: #dc3545;
+}
+
+.sort-bar .cancel-button:hover {
+    background-color: #c82333;
+}
+
