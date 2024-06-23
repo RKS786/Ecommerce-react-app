@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# Ecommerce React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An ecommerce application built with React, Redux, and JSON Server. This application allows users to view products, add them to a cart, and sort products by price. Administrators can add, update, and delete products.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- View a list of products
+- Sort products by price
+- Add products to a cart
+- Administrators can add, update, and delete products
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Redux
+- JSON Server
+- Axios
+- React Toastify
+- CSS (for styling)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup and Installation
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js
+- npm or yarn
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    git clone [https://github.com/RKS786/Ecommerce-react-app.git]
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Navigate to the project directory:
 
-### `npm run eject`
+    ```bash
+    cd ecommerce-react-app
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Install dependencies:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Start JSON Server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ```bash
+    npx json-server --watch db.json --port 5000
+    ```
 
-## Learn More
+    This will start JSON Server and watch the `db.json` file for changes.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. Start the React application:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```bash
+    npm start
+    # or
+    yarn start
+    ```
 
-### Code Splitting
+    The application should now be running on `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project Structure
 
-### Analyzing the Bundle Size
+- `src/`: Contains all the source code for the React application
+  - `components/`: Contains reusable React components
+    - `ProductItem/`: Component for displaying individual product items
+    - `ProductList/`: Component for displaying a list of products
+  - `pages/`: Contains page components
+    - `HomePage.js`: The home page of the application
+    - `AddProductPage.js`: The page for adding new products
+    - `CartPage.js`: The page for viewing the cart
+  - `redux/`: Contains Redux-related files
+    - `actionCreators.js`: Redux action creators
+    - `actionTypes.js`: Redux action types
+    - `reducers.js`: Redux reducers
+  - `UI/`: Contains UI components like loaders
+  - `App.js`: Main application component
+  - `index.js`: Entry point for the React application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Usage
 
-### Making a Progressive Web App
+### Viewing Products
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Navigate to the home page to view a list of products.
+- Use the sort button to sort products by price.
+- Click the "Add to Cart" button to add a product to the cart.
 
-### Advanced Configuration
+### Adding Products
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Navigate to the "Add Product" page.
+- Fill in the product details and click the "Add Product" button to add the product.
 
-### Deployment
+### Viewing the Cart
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Navigate to the "Cart" page to view products added to the cart.
 
-### `npm run build` fails to minify
+### Managing Products
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- As an administrator, you can add, update, or delete products.
+- Click the "Edit" button to edit a product's details.
+- Click the "Delete" button to remove a product.
+
+### Sorting Products
+
+- Click the sort button to sort products by price in ascending order.
+- Click the cancel button next to the sort button to remove sorting.
+
+
+## Contact
+
+If you have any questions or feedback, please contact us at [er.rahul0314@gmail.com].
