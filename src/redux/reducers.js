@@ -36,7 +36,7 @@ export const productReducer = (state= initialState, action) => {
         case actionTypes.ADD_PRODUCT_SUCCESS:
             return{
                 ...state,
-                products: action.payload,
+                products: [...state.products,action.payload],
                 loading: false,
                 error: null
             };

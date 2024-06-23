@@ -11,7 +11,7 @@ const Navbar = () => {
             <Link to="/" className="navbar-brand">eCommerce</Link>
             <div className="navbar-links">
                 <Link to="/" >Products</Link>
-                <Link to="/">Add a Product</Link>
+                <Link to="/addProduct">Add a Product</Link>
             </div>
             <div className="navbar-links m-g-l">
                 <Link to="/cart">Cart ({cartItems.length})</Link>
