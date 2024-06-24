@@ -4,30 +4,38 @@ import { updateProduct, deleteProduct, addToCart } from '../../redux/actionCreat
 import './ProductItem.css';
 
 const ProductItem = ({ product }) => {
-    console.log("product",product)
+    // Log the product for debugging purposes
+    console.log("product", product);
+
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
     const [editedProduct, setEditedProduct] = useState(product);
 
+    // Toggle the edit state
     const handleEditToggle = () => setIsEditing(!isEditing);
 
+    // Handle input changes and update the edited product state
     const handleInputChange = (e) => {
         setEditedProduct({ ...editedProduct, [e.target.name]: e.target.value });
     };
 
+    // Dispatch updateProduct action and exit edit mode
     const handleUpdateProduct = () => {
         dispatch(updateProduct(product.id, editedProduct));
         setIsEditing(false);
     };
 
+    // Dispatch deleteProduct action
     const handleDeleteProduct = () => {
         dispatch(deleteProduct(product.id));
     };
 
+    // Dispatch addToCart action
     const handleAddToCart = () => {
         dispatch(addToCart(product));
     };
 
+    // Render stars for product rating
     const renderStars = (rating) => {
         const stars = [];
         for (let i = 1; i <= 5; i++) {
