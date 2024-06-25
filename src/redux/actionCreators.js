@@ -59,7 +59,9 @@ export const updateProduct = (id, updatedProduct) => async dispatch => {
 }
 
 // Add to Cart Action
-export const addToCart = (product) => async dispatch => {
-    dispatch({ type: actionTypes.ADD_TO_CART, payload: product });
-    toast.success('Product added to cart!');
-}
+export const addToCart = (product) => {
+    return {
+        type: actionTypes.ADD_TO_CART,
+        payload: product
+    };
+};
